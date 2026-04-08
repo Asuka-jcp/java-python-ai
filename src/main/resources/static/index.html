@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热点与改写助手</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>社交平台热点 & AI改写</h1>
+
+    <section class="card">
+        <h2>1) 今日热点</h2>
+        <div id="platforms" class="chips"></div>
+        <button id="fetchBtn">查询热点</button>
+        <p id="topicNote" class="note"></p>
+        <ul id="topicList"></ul>
+    </section>
+
+    <section class="card">
+        <h2>2) 文章低重写</h2>
+        <textarea id="inputText" rows="10" placeholder="粘贴文章内容，至少50字"></textarea>
+        <button id="rewriteBtn">AI重写</button>
+        <p id="rewriteNote" class="note"></p>
+        <textarea id="outputText" rows="10" readonly placeholder="重写结果"></textarea>
+    </section>
+
+    <section class="card">
+        <h2>3) AI 对话（自动识别意图）</h2>
+        <p class="note">你可以直接说："帮我看知乎今天热点" 或 "把这段文章改写一下..."</p>
+        <div id="chatBox" class="chat-box"></div>
+        <div class="chat-input-row">
+            <textarea id="chatInput" rows="3" placeholder="输入自然语言问题"></textarea>
+            <button id="chatSendBtn">发送</button>
+        </div>
+    </section>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

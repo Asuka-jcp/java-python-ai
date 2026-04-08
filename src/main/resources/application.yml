@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+python:
+  ai:
+    base-url: ${PYTHON_AI_BASE_URL:http://localhost:8000}
