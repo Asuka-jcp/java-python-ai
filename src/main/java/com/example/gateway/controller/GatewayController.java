@@ -1,5 +1,7 @@
 package com.example.gateway.controller;
 
+import com.example.gateway.dto.ChatRequest;
+import com.example.gateway.dto.ChatResponse;
 import com.example.gateway.dto.HotTopicResponse;
 import com.example.gateway.dto.RewriteRequest;
 import com.example.gateway.dto.RewriteResponse;
@@ -42,6 +44,15 @@ public class GatewayController {
     @PostMapping("/rewrite")
     public RewriteResponse rewrite(@Valid @RequestBody RewriteRequest request) {
         RewriteResponse response = pythonAiClient.rewrite(request.text());
+        if (response == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Python 服务无响应");
+        }
+        return response;
+    }
+
+    @PostMapping("/chat")
+    public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
+        ChatResponse response = pythonAiClient.chat(request.message());
         if (response == null) {
             throw new ResponseStatusException(HttpStatus.BAD_GATEWAY, "Python 服务无响应");
         }
