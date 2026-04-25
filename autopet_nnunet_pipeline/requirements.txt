@@ -1,0 +1,9 @@
+nnunetv2
+nibabel
+SimpleITK
+numpy
+pandas
+tqdm
+scikit-learn
+pyyaml
+pytest
