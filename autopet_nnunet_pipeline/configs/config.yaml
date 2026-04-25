@@ -1,0 +1,15 @@
+raw_data_root: ./data/autopet_raw
+nnunet_raw: ./data/nnUNet_raw
+nnunet_preprocessed: ./data/nnUNet_preprocessed
+nnunet_results: ./data/nnUNet_results
+
+dataset_id: 501
+dataset_name: Dataset501_AutoPET
+
+ct_filename: CTres.nii.gz
+suv_filename: SUV.nii.gz
+seg_filename: SEG.nii.gz
+
+channel_0_name: CT
+channel_1_name: SUV
+label_name: lesion
