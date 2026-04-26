@@ -1,0 +1,25 @@
+seed: 42
+paths:
+  data_root: "./data"
+  manifest_csv: "./outputs/manifest.csv"
+  labels_flat_csv: "./outputs/labels_flat.csv"
+  output_dir: "./outputs"
+model:
+  encoder_channels: [32, 64, 128, 256]
+  region_embed_dim: 128
+  hidden_dim: 256
+  use_suv_head: true
+training:
+  batch_size: 2
+  num_workers: 0
+  lr: 1e-4
+  weight_decay: 1e-5
+  epochs: 20
+  val_ratio: 0.2
+  resize_shape: [96, 96, 96]
+  crop_shape: null
+  normalize:
+    ct_clip: [-1000, 1000]
+    pet_clip: [0.0, 20.0]
+loss:
+  suv_weight: 0.1
