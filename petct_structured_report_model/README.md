@@ -74,6 +74,49 @@ python scripts/predict_structured_report.py \
 - `CASE_0001.nii.gz`：PET/SUV
 - `CASE.json`：结构化标注
 
+## 数据怎么放、放哪（推荐）
+
+推荐你把数据集中放在一个根目录（例如项目内的 `data/`，或外部磁盘路径），然后按“病例三件套同目录”组织：
+
+```text
+/path/to/data/
+├── CASE001_0000.nii.gz
+├── CASE001_0001.nii.gz
+├── CASE001.json
+├── CASE002_0000.nii.gz
+├── CASE002_0001.nii.gz
+├── CASE002.json
+└── ...
+```
+
+也支持分子目录（脚本会递归扫描）：
+
+```text
+/path/to/data/
+├── hospital_a/
+│   ├── CASE101_0000.nii.gz
+│   ├── CASE101_0001.nii.gz
+│   └── CASE101.json
+└── hospital_b/
+    ├── CASE202_0000.nii.gz
+    ├── CASE202_0001.nii.gz
+    └── CASE202.json
+```
+
+命名匹配规则（非常重要）：
+- `*_0000.nii.gz` 会被当作 CT。
+- `*_0001.nii.gz` 会被当作 PET。
+- `*.json` 文件名（不带后缀）必须与病例 ID 一致。
+- 例如 `CASE001_0000.nii.gz`、`CASE001_0001.nii.gz`、`CASE001.json` 才会被匹配成同一病例。
+
+建议先运行：
+
+```bash
+python scripts/inspect_dataset.py --data-root /path/to/data --output outputs/manifest.csv
+```
+
+然后打开 `outputs/manifest.csv` 检查 `has_ct/has_pet/has_json` 三列是否都为 `True`。
+
 `inspect_dataset.py` 会自动生成 `manifest.csv`：
 - `case_id, ct_path, pet_path, json_path, has_ct, has_pet, has_json`
 
